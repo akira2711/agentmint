@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentMint — Free mint for Agent ID holders</title>
+<meta name="description" content="AgentMint Pass: a free NFT collectible on BNB Chain. Only addresses holding an Agent ID can mint, one per address, free. No returns promised.">
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  .sub { color: #666; margin-top: 0; }
+  .card { border: 1px solid #ccc; border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0; }
+  .row { display: flex; justify-content: space-between; gap: 1rem; }
+  .muted { color: #666; font-size: .9rem; }
+  button { font: inherit; padding: .6rem 1.2rem; border-radius: 8px; border: 1px solid #333; background: #111; color: #fff; cursor: pointer; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.secondary { background: transparent; color: inherit; }
+  #status { min-height: 1.5em; }
+  .ok { color: #0a7d2c; } .warn { color: #b35400; } .err { color: #c00; }
+  code { font-size: .9em; }
+  footer { margin-top: 2rem; font-size: .85rem; color: #666; }
+</style>
+</head>
+<body>
+  <h1>AgentMint Pass</h1>
+  <p class="sub">A free NFT collectible on BNB Chain — for Agent ID holders only.</p>
+
+  <div class="card">
+    <div class="row"><span>Minted</span><strong id="minted">…</strong></div>
+    <div class="row"><span>Supply cap</span><strong id="cap">10,000</strong></div>
+    <div class="row"><span>Price</span><strong>Free (0 BNB + gas)</strong></div>
+    <div class="row"><span>Contract</span><code id="contract">not deployed yet</code></div>
+  </div>
+
+  <div class="card">
+    <p id="status" class="muted">Connect a wallet to check your Agent ID.</p>
+    <p>
+      <button id="connectBtn">Connect wallet</button>
+      <button id="wcBtn" class="secondary" hidden>Connect with WalletConnect</button>
+    </p>
+    <p id="accountLine" class="muted"></p>
+    <p id="agentLine" class="muted"></p>
+    <p><button id="mintBtn" disabled>Mint my free AgentMint Pass</button></p>
+    <p id="txLine" class="muted"></p>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin:.25rem 0">How it works</h2>
+    <ol>
+      <li>Connect your wallet (BNB Chain).</li>
+      <li>We check on-chain whether the connected address holds an <strong>Agent ID</strong> (the on-chain name of an Agentic Wallet). Only the connected address is checked — nothing else is looked up.</li>
+      <li>If you hold one, press <strong>Mint</strong>. Your wallet asks you to confirm the transaction — nothing is sent without your confirmation.</li>
+      <li>One pass per address. The mint itself is free; you only pay network gas.</li>
+    </ol>
+    <p class="muted">No account, no sign-up, no server: this page talks to BNB Chain directly from your browser. It never sees or stores any key.</p>
+    <p class="muted">AgentMint Pass is a free collectible. It promises no returns, no income and no yield.</p>
+  </div>
+
+  <footer>
+    Contract source is open and verified on BscScan once deployed. Owner powers are minimal: only the metadata base URI can be updated. There is no pause, no owner mint and no fund withdrawal — the mint is free by design.<br>
+    Agent ID is claimed inside the Binance App (Wallet → Agent ID). This site is not affiliated with Binance.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
